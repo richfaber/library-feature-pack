@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cafe24 Feature Package</title>
+    <link rel="stylesheet" href="/resource/css/style.css" charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="/resource/js/cafe24.feature.pack.v1.0.js"></script>
+    <script src="/resource/js/styleguide.js"></script>
+    <script src="/resource/js/styleguide.vendor.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg globalNavigation">
+    <div class="container">
+        <span class="globalNavigation__logo"><img src="/resource/img/cafe24_logo.png" alt=""></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html"><i class="now-ui-icons gestures_tap-01"></i> About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="document.html"><i class="now-ui-icons education_paper"></i> Document</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="showcase.html"><i class="now-ui-icons business_bulb-63"></i> ShowCase</a>
+                </li>
+                <!--<li class="nav-item">-->
+                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="contentSection">
+
+    <div class="contentSection__sideNavigation">
+
+        <div class="section">
+            <span class="headline">Method</span>
+            <ul class="itemList">
+                <li><a href="#BoardDrag" class="link"><i class="fa fa-envelope"></i><span>()</span></a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <span class="headline">Feature</span>
+            <ul class="itemList">
+                <li><a href="#BoardDrag" class="link"><i class="fa fa-envelope"></i><span>Board Drag</span></a></li>
+                <li>
+                    <a href="#BoardDrag" class="link"><i class="fa fa-envelope"></i><span>TEST DEPTH</span></a>
+                    <ul class="itemSubList">
+                        <li><a href="#BoardDrag" class="link"><i class="fa fa-caret-right"></i><span>Deep Depth</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <div class="contentSection__document">
+
+        <h1 class="contentSection__document__headline">Document</h1>
+        <div class="contentSection__document__section">
+
+            <h2 class="title">boardDrag</h2>
+
+            <div class="contentSplit">
+                <h2 class="headline">Method</h2>
+
+                <div class="column">
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> Drag Drop Board</h3>
+
+                    <h4 class="title">드래그 위치 추적</h4>
+
+                    <div class="printcode">
+                        <script type="text/plain" class="language-html line-numbers" data-style="height:300px">
+<div class="sample rect" style="position:absolute; left:20px; top:20px; width:50px; height:50px;"></div>
+<div class="sample rect" style="position:absolute; left:20px; top:20px; width:50px; height:50px;"></div>
+<div class="sample rect" style="position:absolute; left:20px; top:20px; width:50px; height:50px;"></div>
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+            <div class="contentSplit">
+                <h2 class="headline">Feature</h2>
+                <div class="column">
+
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> Free board</h3>
+                    <div class="dragdropBoard freeboard" id="dragdropBoard1">
+
+                        <div class="dragdropBoard__dragzone">
+                            <span class="sampleElement rect">item1</span>
+                            <span class="sampleElement rect">item2</span>
+                            <span class="sampleElement rect">item3</span>
+                            <span class="sampleElement rect">item4</span>
+                            <span class="sampleElement rect">item5</span>
+                            <span class="sampleElement rect">item6</span>
+                            <span class="sampleElement rect">item7</span>
+                        </div>
+
+                    </div>
+
+                    <script type="text/javascript">
+                        window.addEventListener('load', function () {
+
+                            cafe24fp('#dragdropBoard1').boardDrag({
+                                item: {
+                                    selector: [':scope .dragdropBoard__dragzone .sampleElement'],
+                                    class: {
+                                        over: 'over',
+                                        down: 'down',
+                                        move: 'move',
+                                        end: 'end',
+                                        overlapItem: 'overlap'
+                                    },
+                                    blankElement: { el: 'span', class:'blank', id:'' }
+                                },
+                                dropArea: {
+                                    selector: [':scope .dragdropBoard__dragzone']
+                                }
+                            });
+
+                        });
+                    </script>
+
+                    <div class="pending">
+                        <div class="loadingbox">
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                            <div class="block"></div>
+                        </div>
+                    </div>
+
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> Fit board</h3>
+                    <div class="dragdropBoard fit" id="dragdropBoard2">
+
+                        <div class="dragdropBoard__side">
+                            <div class="item">
+                                <span class="sampleElement rect" id="aa" data-drop-column="2" data-drop-row="5">2x5</span>
+                                <span class="sampleElement rect" id="bb" data-drop-column="1" data-drop-row="1">1x1</span>
+                                <span class="sampleElement rect" data-drop-column="3" data-drop-row="4">3x4</span>
+                                <span class="sampleElement rect" data-drop-column="2" data-drop-row="2">2x2</span>
+                                <span class="sampleElement rect" data-drop-column="1" data-drop-row="4">1x4</span>
+                                <span class="sampleElement rect" data-drop-column="4" data-drop-row="3">4x3</span>
+                                <span class="sampleElement rect" data-drop-column="2" data-drop-row="3">2x3</span>
+                            </div>
+                        </div>
+
+                        <div class="dragdropBoard__dragzone"></div>
+
+                    </div>
+
+                    <script type="text/javascript">
+                        window.addEventListener('load', function () {
+
+                            cafe24fp('#dragdropBoard2').boardDrag({
+                                killItemAfterDragEnd: false, // 드래그 후 아이템을 삭제할 지 여부
+                                overlapItemPush: false,
+                                dropAllowDuplicateElement: false, // 드래그 영역에서 위치 중복 허용여부
+
+                                item: {
+                                    selector: [':scope .dragdropBoard__side .item .sampleElement'],
+                                    class: {
+                                        down: 'down',
+                                        move: 'move',
+                                        end: 'end',
+                                        overlapItem: 'overlap',
+                                        overlapDropArea: 'overlapdropArea'
+                                    },
+                                    blankElement: { el: 'span', class:'blank', id:'' },
+                                },
+
+                                dropArea: {
+                                    selector: [':scope .dragdropBoard__dragzone'],
+                                    grid: {
+                                        unit: {
+                                            height: 70,
+                                            widthLength: 10,
+                                            heightLength: 'infinity'
+                                        },
+                                        gridHoverElement: { el: 'div', class:'gridHover', id:'' }
+                                    },
+                                    buttonItemDeleteElement: {
+                                        el: 'button',
+                                        type: 'button',
+                                        class: 'btnDelete',
+                                        innerHTML: '<span class="fa fa-trash-o"></span>'
+                                    }
+                                },
+
+                                callback: {
+
+                                    /**
+                                     * 콜백 드래그가 끝난 후
+                                     * @param {Dom} holdItem - 현재 요소
+                                     * @param {Object} coords - 요소 좌표
+                                     * @param {Object} data - row/column 데이터
+                                     */
+                                    itemDragEnd: function(holdItem, coords, data) {
+                                        // console.log(holdItem, coords, data);
+                                    },
+
+                                    /**
+                                     * 드래그 아이템 더블클릭 시
+                                     * @param {Dom} item - 클릭 요소
+                                     * @param {Boolean} isOverlapDropArea - 드래그영역 안에 있는지
+                                     */
+                                    itemDblClickOnDrop: function(item, isOverlapDropArea) {
+
+                                        // console.log(item, isOverlapDropArea);
+
+                                    },
+
+                                    itemDelete: function() {
+
+                                    }
+
+                                }
+
+                            });
+
+                        });
+                    </script>
+
+                    <div class="dragdropBoard" id="dragdropBoard3">
+
+                        <div class="dragdropBoard__side" style="flex:2">
+
+                            <div class="item">
+                                <span class="sampleElement rect">item1</span>
+                                <span class="sampleElement rect">item2</span>
+                                <span class="sampleElement rect">item3</span>
+                                <span class="sampleElement rect">item4</span>
+                                <span class="sampleElement rect">item5</span>
+                                <span class="sampleElement rect">item6</span>
+                                <span class="sampleElement rect">item7</span>
+                            </div>
+
+                        </div>
+
+                        <div class="dragdropBoard__dragzone" style="flex:4">
+
+                        </div>
+
+                        <div class="dragdropBoard__dragzone" style="flex:4">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <h2>2. tabNav</h2>
+
+            <div class="contentSection__document__split">
+                <h2 class="headline">Method</h2>
+
+                <div class="column">
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> tabNav Board</h3>
+
+                    <h4 class="title">드래그 위치 추적</h4>
+
+                    <div class="printcode">
+                        <script type="text/plain" class="language-html line-numbers" data-style="height:300px">
+<div class="cfpTab typeNav eTab">
+    <ul>
+        <li><a href="#tabCont1_1">메뉴예시 1</a></li>
+        <li class="selected"><a href="#tabCont1_2">메뉴예시 2</a></li>
+        <li><a href="#tabCont1_3">메뉴예시 3</a></li>
+        <li><a href="#tabCont1_4">메뉴예시 4</a></li>
+    </ul>
+</div>
+<div id="tabCont1_1" class="tabCont" style="display:none;">
+    메뉴예시 1
+</div>
+<div id="tabCont1_2" class="tabCont" style="display:block;">
+    메뉴예시 2
+</div>
+<div id="tabCont1_3" class="tabCont" style="display:none;">
+    메뉴예시 3
+</div>
+<div id="tabCont1_4" class="tabCont" style="display:none;">
+    메뉴예시 4
+</div>
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="contentSection__document__split">
+                <h2 class="headline">Feature</h2>
+                <div class="column">
+
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> tabNav (Default)</h3>
+                    <div class="dragdropBoard" id="mTab1">
+                        <div class="mTab typeNav eTab">
+                            <ul>
+                                <li><a href="#tabCont1_1">메뉴예시 1</a></li>
+                                <li><a href="#tabCont1_2">메뉴예시 2</a></li>
+                                <li><a href="#tabCont1_3">메뉴예시 3</a></li>
+                                <li><a href="#tabCont1_4">메뉴예시 4</a></li>
+                            </ul>
+                        </div>
+                        <div id="tabCont1_1" class="tabCont" style="display:none;">
+                            메뉴예시 1
+                        </div>
+                        <div id="tabCont1_2" class="tabCont" style="display:none;">
+                            메뉴예시 2
+                        </div>
+                        <div id="tabCont1_3" class="tabCont" style="display:none;">
+                            메뉴예시 3
+                        </div>
+                        <div id="tabCont1_4" class="tabCont" style="display:none;">
+                            메뉴예시 4
+                        </div>
+
+                    </div>
+                    <script type="text/javascript">
+                        window.addEventListener('load', function () {
+                            cafe24fp('#mTab1').cfpTab({
+                                item: {
+                                    selector: '#mTab1 > .eTab a',
+                                    class: {
+                                        focus: 'selected'
+                                    },
+                                    currentPage: 0
+                                }
+                            });
+                        });
+                    </script>
+
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> tabNav + subTab</h3>
+                    <div class="dragdropBoard" id="mTab2">
+                        <div class="mTab typeNav eTab">
+                            <ul>
+                                <li><a href="#tabCont2_1">메뉴예시 1</a></li>
+                                <li><a href="#tabCont2_2">메뉴예시 2</a></li>
+                                <li><a href="#tabCont2_3">메뉴예시 3</a></li>
+                                <li><a href="#tabCont2_4">메뉴예시 4</a></li>
+                            </ul>
+                        </div>
+                        <div id="tabCont2_1" class="tabCont" style="display:none;">
+                            메뉴예시 1
+                            <div id="mTab3">
+                                <div class="mTab typeNav eTab">
+                                    <ul>
+                                        <li><a href="#tabCont2_1_1">메뉴예시 1_1</a></li>
+                                        <li><a href="#tabCont2_1_2">메뉴예시 1_2</a></li>
+                                        <li><a href="#tabCont2_1_3">메뉴예시 1_3</a></li>
+                                        <li><a href="#tabCont2_1_4">메뉴예시 1_4</a></li>
+                                    </ul>
+                                </div>
+                                <div id="tabCont2_1_1" class="tabCont" style="display:none;">
+                                    메뉴예시 1_1
+                                </div>
+                                <div id="tabCont2_1_2" class="tabCont" style="display:none;">
+                                    메뉴예시 1_2
+                                </div>
+                                <div id="tabCont2_1_3" class="tabCont" style="display:none;">
+                                    메뉴예시 1_3
+                                </div>
+                                <div id="tabCont2_1_4" class="tabCont" style="display:none;">
+                                    메뉴예시 1_4
+                                </div>
+
+                            </div>
+                            <script type="text/javascript">
+                                window.addEventListener('load', function () {
+                                    cafe24fp('#mTab3').cfpTab({
+                                        item: {
+                                            selector: '#mTab3 > .eTab a',
+                                            class: {
+                                                focus: 'selected'
+                                            },
+                                            currentPage: 0
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div id="tabCont2_2" class="tabCont" style="display:none;">
+                            메뉴예시 2
+                        </div>
+                        <div id="tabCont2_3" class="tabCont" style="display:none;">
+                            메뉴예시 3
+                        </div>
+                        <div id="tabCont2_4" class="tabCont" style="display:none;">
+                            메뉴예시 4
+                        </div>
+
+                    </div>
+                    <script type="text/javascript">
+                        window.addEventListener('load', function () {
+                            cafe24fp('#mTab2').cfpTab({
+                                item: {
+                                    selector: '#mTab2 > .eTab a',
+                                    class: {
+                                        focus: 'selected'
+                                    },
+                                    currentPage: 0
+                                }
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>3. tooltip</h2>
+
+            <div class="contentSection__document__split">
+                <h2 class="headline">Method</h2>
+
+                <div class="column">
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> tooltip Board</h3>
+
+                    <h4 class="title">툴팁</h4>
+
+                    <div class="printcode">
+                        <script type="text/plain" class="language-html line-numbers" data-style="height:300px">
+<div class="cfpTip gSmall">
+    <button class="icon eTipHover">도움말</button>
+    <div class="tooltip">
+        <div class="content">
+            <strong class="titleEm">대제목</strong>
+            <strong class="title">중제목</strong>
+            <ul class="mList">
+                <li>내용</li>
+            </ul>
+        </div>
+        <button type="button" class="close eClose">닫기</button>
+        <span class="edge"></span>
+    </div>
+</div>
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+
+            <style>
+                .tooltipLayer { width:300px; height:200px; background:#fff; border:1px solid #000; }
+            </style>
+
+            <div class="contentSection__document__split">
+                <h2 class="headline">Feature</h2>
+                <div class="column">
+
+                    <h3 class="headline"><i class="now-ui-icons ui-2_chat-round"></i> tooltip (Default)</h3>
+                    <div class="dragdropBoard" style="position:relative;">
+                        <div style="position:static; top:0; left:0; margin-right:10px;">
+                            <button id="tooltip1" class="eTip" style="border:1px solid #000;">도움말</button>
+                            <div id="tooltipLayer1" style="display:none;">
+                                <div class="content">
+                                    <strong class="titleEm">대제목</strong>
+                                    <strong class="titleEm">중제목</strong>
+                                    <ul class="mList">
+                                        <li>내용</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="eClose">닫기</button>
+                                <span class="edge"></span>
+                            </div>
+                        </div>
+
+                        <div style="position:static; top:0; left:0; margin-right:10px;">
+                            <button id="tooltip1_1" class="eTip" style="border:1px solid #000;">도움말</button>
+                            <div id="tooltipLayer1_1" style="display:none;">
+                                <div class="content">
+                                    <strong class="titleEm">대제목</strong>
+                                    <strong class="titleEm">중제목</strong>
+                                    <ul class="mList">
+                                        <li>내용</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="eClose">닫기</button>
+                                <span class="edge"></span>
+                            </div>
+                        </div>
+
+                        <div style="position:static; top:0; left:0; margin-right:10px;">
+                            <button id="tooltip1_2" class="eTip" style="border:1px solid #000;">도움말</button>
+                            <div id="tooltipLayer1_2" style="display:none;">
+                                <div class="content">
+                                    <strong class="titleEm">대제목</strong>
+                                    <strong class="titleEm">중제목</strong>
+                                    <ul class="mList">
+                                        <li>내용</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="eClose">닫기</button>
+                                <span class="edge"></span>
+                            </div>
+                        </div>
+
+                        <div style="position:static; top:0; left:0; margin-right:10px;">
+                            <button id="tooltip1_3" class="eTip" style="border:1px solid #000;">도움말</button>
+                            <div id="tooltipLayer1_3" style="display:none;">
+                                <div class="content">
+                                    <strong class="titleEm">대제목</strong>
+                                    <strong class="titleEm">중제목</strong>
+                                    <ul class="mList">
+                                        <li>내용</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="eClose">닫기</button>
+                                <span class="edge"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="dragdropBoard" style="position:relative;">
+                        <div style="position:static; top:0; left:0;">
+                            <button id="tooltip2" class="eTip" style="border:1px solid #000;">도움말</button>
+                            <div id="tooltipLayer2" style="display:none;">
+                                <div class="content">
+                                    <strong class="titleEm">대제목</strong>
+                                    <strong class="titleEm">중제목</strong>
+                                    <ul class="mList">
+                                        <li>내용</li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="eClose">닫기</button>
+                                <span class="edge"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        document.addEventListener('DOMContentLoaded', function(){
+                            cafe24fp('#tooltip1').cfpTip({
+                                item: {
+                                    initView: true,
+                                    mouseEvent: "click"
+                                },
+                                connectLayer: {
+                                    selector : '#tooltipLayer1',
+                                    class : 'tooltipLayer',
+                                    positionX : 'left',
+                                    positionY : 'down',
+                                    space : 5,
+                                    closeSelector : '.eClose'
+                                }
+                            });
+
+                            cafe24fp('#tooltip1_1').cfpTip({
+                                item: {
+                                    initView: true,
+                                    mouseEvent: "click"
+                                },
+                                connectLayer: {
+                                    selector : '#tooltipLayer1_1',
+                                    class : 'tooltipLayer',
+                                    positionX : 'right',
+                                    positionY : 'down',
+                                    space : 10,
+                                    closeSelector : '.eClose'
+                                }
+                            });
+
+                            cafe24fp('#tooltip1_2').cfpTip({
+                                item: {
+                                    initView: true,
+                                    mouseEvent: "click"
+                                },
+                                connectLayer: {
+                                    selector : '#tooltipLayer1_2',
+                                    class : 'tooltipLayer',
+                                    positionX : 'left',
+                                    positionY : 'top',
+                                    space : 10,
+                                    closeSelector : '.eClose'
+                                }
+                            });
+
+                            cafe24fp('#tooltip1_3').cfpTip({
+                                item: {
+                                    initView: true,
+                                    mouseEvent: "click"
+                                },
+                                connectLayer: {
+                                    selector : '#tooltipLayer1_3',
+                                    class : 'tooltipLayer',
+                                    positionX : 'right',
+                                    positionY : 'top',
+                                    space : 5,
+                                    closeSelector : '.eClose'
+                                }
+                            });
+
+                            cafe24fp('#tooltip2').cfpTip({
+                                item: {
+                                    initView: true,
+                                    mouseEvent: "hover"
+                                },
+                                connectLayer: {
+                                    selector : '#tooltipLayer2',
+                                    class : 'tooltipLayer',
+                                    positionX : 'left',
+                                    positionY : 'down',
+                                    space : 5,
+                                    closeSelector : '.eClose'
+                                }
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

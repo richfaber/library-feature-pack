@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+%blankElement {
+  .blank {
+    vertical-align:top;
+
+    &::after {
+      content: 'blank';
+      display: block;
+      font-size: 12px;
+      line-height: 26px;
+      text-align: center;
+      color: #fff;
+    }
+
+    display: block;
+    height: 26px;
+    border: 1px dotted #666666;
+    background: #b9b9b9;
+  }
+}
+
+.dragdropBoard {
+  @extend %boxShadow14;
+
+  //position: relative;
+  display: flex;
+  height: 300px;
+  margin: 20px 20px;
+  padding: 20px;
+
+  &.freeboard {
+    @extend %blankElement;
+
+    .blank {
+      width: 80px;
+      display: inline-block;
+    }
+
+    .sampleElement {
+      z-index: 1;
+      width: 80px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+
+      &.move {
+        z-index: 10;
+
+        &.overlap {
+          background: #dd4b39;
+          color: #fff;
+        }
+
+      }
+
+      &.over {
+        background: #082fae;
+        color: #fff;
+      }
+
+      &.overlap {
+        background: #dd4b39;
+        color: #fff;
+      }
+
+    }
+
+  }
+
+  &.fit {
+
+    .dragdropBoard__side {
+      position: relative;
+
+      .item {
+        @extend %blankElement;
+
+        .blank {
+          margin: 0 0 5px;
+        }
+
+        .sampleElement {
+          display: block;
+          margin: 0 0 5px;
+          cursor: pointer;
+          z-index: 10;
+
+          &.overlapdropArea {
+            animation: oneframe 1s infinite;
+            // animation-iteration-count: 1;
+          }
+
+          &.overlap {
+            background: green;
+            color: white;
+          }
+
+
+          @keyframes oneframe {
+            0% { outline:2px solid white; }
+            50% { outline:2px solid greenyellow; }
+            100% { outline:2px solid white; }
+          }
+    
+        }
+      }
+    }
+  }
+
+}
+
+.dragdropBoard__side {
+  flex: 1;
+
+  .item {
+    li {
+      @extend %blankElement;
+
+      margin: 0 0 6px;
+
+      .sampleElement {
+
+        display: block;
+
+        &:hover {
+          cursor: pointer;
+          color: white;
+          background: #00AC7F;
+        }
+      }
+
+    }
+  }
+
+}
+
+.dragdropBoard__dragzone {
+  @extend %boxShadow16;
+
+  position: relative;
+  margin: 0 0 0 20px;
+  flex: 9;
+
+  &:first-child {
+    margin: 0;
+  }
+
+  .gridHover {
+    background: #00cc00;
+  }
+
+}

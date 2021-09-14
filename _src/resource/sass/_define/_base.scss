@@ -1,0 +1,178 @@
+@charset "utf-8";
+
+/*
+define/_base
+
+스타일에 적용되는 기본 요소들을 초기화 한다.
+
+Styleguide 4.1
+*/
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, img {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body, code {
+  font-size: 16px;
+  color: #666666;
+  background: #fff;
+  -webkit-text-size-adjust: none;
+
+}
+
+body {
+  background: #fff;
+}
+
+pre {
+}
+
+ul, ol, dl, li {
+  list-style: none;
+}
+
+img, fieldset {
+  border: 0;
+  vertical-align: top;
+}
+
+main {
+  display: block;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  figcaption {
+    position: absolute;
+    left: -9999px;
+  }
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table img {
+  vertical-align: middle;
+}
+
+th, td {
+  border: 0;
+  word-wrap: break-word;
+}
+
+input, select, textarea {
+  font-size: 14px;
+  color: #2f3039;
+  vertical-align: middle;
+}
+
+label {
+  cursor: pointer;
+}
+
+caption {
+  overflow: hidden;
+  width: 1px;
+  font-size: 1px;
+  line-height: 0;
+  text-indent: 150%;
+  white-space: nowrap;
+}
+
+legend, .blind {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  font-size: 1px;
+  line-height: 0;
+  color: transparent;
+  text-indent: -150%;
+  white-space: nowrap;
+}
+
+em, address {
+  font-style: normal;
+}
+
+mark {
+  color: inherit;
+  background: transparent;
+}
+
+hr.layout {
+  display: none;
+}
+
+button {
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: #2e3039;
+}
+
+h1, h2, h3, h4, h5, strong {
+  font-weight: 400;
+}
+
+::-webkit-input-placeholder {
+  color: #97989b;
+}
+
+:-ms-input-placeholder {
+  color: #97989b;
+}
+
+::-moz-placeholder {
+  color: #97989b;
+  opacity: 1;
+}
+
+:-moz-placeholder {
+  color: #97989b;
+  opacity: 1;
+}
+
+::selection {
+  background: #5372a1;
+  color: #fff;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: #5372a1;
+  color: #fff;
+  text-shadow: none;
+}
+
+::-webkit-selection {
+  background: #5372a1;
+  color: #fff;
+  text-shadow: none;
+}
+
+input[type=text]::-ms-clear {
+  display: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}

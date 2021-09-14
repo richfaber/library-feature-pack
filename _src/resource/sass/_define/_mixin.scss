@@ -1,0 +1,275 @@
+@charset "utf-8";
+
+/*
+define/_mixin
+
+CSS 의 몇 가지 사항은 약간 번거롭습니다. 특히 CSS3 와 존재하는 여러 공급 업체 접두사를 사용하면 더욱 그렇습니다. mixin 을 사용하면 사이트 전체에서 재사용 할 CSS 선언 그룹을 만들 수 있습니다.
+
+- [@mixin 사용법](https://www.codingfactory.net/10110)
+- [@function 사용법](http://megaton111.cafe24.com/2017/01/13/sass-%EB%AC%B8%EB%B2%95-%ED%95%A8%EC%88%98/)
+- [@content 사용법](http://osxtip.tistory.com/324)
+
+Styleguide 4.3
+*/
+
+/*
+@mixin background-sprite
+
+스프라이트 이미지의 `background-image, background-repeat, background-position` 을 출력해 준다.
+
+- 전달인자
+  - `$sprite` 사용할 스프라이트 이미지 이름
+    * @include background-sprite($sprite:$icon-line1);
+  - `$left` backgorund-repeat-x 보정, 미세하게 위치를 조정할 경우 사용한다. (음수가능)
+    * @include background-sprite($left:5px);
+  - `$top` backgorund-repeat-y 보정, 미세하게 위치를 조정할 경우 사용한다. (음수가능)
+    * @include background-sprite($top:-3px);
+  - `$background-position-x` 예약어를 사용할 수 있다. {center|right}
+    * @include background-sprite($top:3px);
+  - 추가 출력속성
+    * width:auto
+    * height:auto
+
+markup:
+<h4 class="servicesSentence__headline">Provide the best value with professional services</h4>
+
+Styleguide 4.3.1
+*/
+@mixin background-sprite($sprite, $left:0, $top:0, $background-position-x:null) {
+  @include sprite($sprite);
+
+  $sprite-offset-x: nth($sprite, 3) + $left;
+  $sprite-offset-y: nth($sprite, 4) + $top;
+
+  width: auto;
+  height: auto;
+
+  background-repeat: no-repeat;
+
+  @if $background-position-x == 'center' {
+    background-position: center $sprite-offset-y;
+  } @else if $background-position-x == 'right' {
+    background-position: right $sprite-offset-y;
+  } @else {
+    background-position: $sprite-offset-x $sprite-offset-y;
+  }
+
+}
+
+/*
+@mixin font-size
+
+픽셀을 rem 단위로 변환해 준다.
+
+- 전달인자
+  - `$size` 변환하고자 하는 픽셀값
+
+Styleguide 4.3.2
+*/
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+/*
+@mixin keyframes
+
+keyframes 자동생성
+
+- [@content 사용법](http://osxtip.tistory.com/324)
+- 전달인자
+  - `$animation-name` 애니메이션 이름
+
+Styleguide 4.3.3
+*/
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+/*
+@mixin animation
+
+animation 생성
+
+- 전달인자
+  - `$str` animation 속성값
+
+Styleguide 4.3.4
+*/
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+/*
+@mixin transition
+
+animation 생성
+
+- 전달인자
+  - `$args` transition 속성값
+
+Styleguide 4.3.5
+*/
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+/*
+@mixin circle
+
+원(circle) 생성
+
+- 전달인자
+  - `$size` 원지름
+
+Styleguide 4.3.6
+*/
+@mixin circle($size: 100px) {
+  width: $size;
+  height: $size;
+  position: relative;
+
+  -webkit-border-radius: $size / 2 + 0px;
+  -moz-border-radius: $size / 2 + 0px;
+  border-radius: $size / 2 + 0px;
+
+  & > div, span {
+    width: $size - $size*0.3;
+    height: $size - $size*0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+  }
+}
+
+/*
+@mixin border-radius
+
+border-radius 호환성 코드 생성
+
+- 전달인자
+  - `$radius` 둥글기
+
+Styleguide 4.3.7
+*/
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box; /* stops bg color from leaking outside the border: */
+}
+
+@mixin border-top-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-bottom-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+/*
+@mixin media-xl
+
+미디어쿼리 생성
+
+- [@content 사용법](http://osxtip.tistory.com/324)
+- [@refer : managing-responsive-breakpoints-sass](https://www.sitepoint.com/managing-responsive-breakpoints-sass/)
+
+Styleguide 4.3.8
+*/
+// Screen size variables
+$screen-xs-min: 425px; // Tiny phones
+$screen-sm-min: 576px; // Small tablets and large smartphones (landscape view)
+$screen-md-min: 768px; // Small tablets (portrait view)
+//$screen-lg-min: 992px;  // Tablets and small desktops
+$screen-lg-min: 1000px; // Tablets and small desktops
+$screen-xl-min: 1200px; // Large tablets and desktops
+
+// Mixins
+@mixin media-xl {
+  @media (max-width: #{$screen-xs-min}) {
+    @content;
+  }
+}
+
+// Tiny devices
+@mixin media-sm {
+  @media (max-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Small devices
+@mixin media-md {
+  @media (max-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin media-lg {
+  @media (max-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin media-xl {
+  @media (max-width: #{$screen-xl-min}) {
+    @content;
+  }
+}

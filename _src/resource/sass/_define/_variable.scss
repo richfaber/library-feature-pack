@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/*
+define/_variable
+
+전역으로 사용하는 변수 집합
+
+- [변수 사용법](https://www.codingfactory.net/10107)
+- [변수를 문자열로 사용할 때](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#interpolation_)
+
+Styleguide 4.2
+*/
+
+/*
+$variable
+
+- `$baseFont` 기본 폰트지정, 주로 글꼴지정 목적으로 사용한다.
+- `$imagePath` 페이지 전역으로 사용되는 이미지 경로, 주로 배경이미지 사용할 때 사용한다
+
+Styleguide 4.2.1
+*/
+$baseFont : Arial, '맑은 고딕', 'Malgum Gothic', Sans-serif;
+$imagePath : "/img";
+
+/*
+%variable
+
+- `%clearfix` 부유컨텐츠(float 적용된 자식요소) 가 있으면 부모요소 에서 `clear:both` 시킨다.
+- `%tableGrid` 'display:table' 축약 표현.
+
+Styleguide 4.2.2
+*/
+%clearfix {
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+%tableGrid {
+  display: table;
+
+  > .row {
+    display: table-row;
+
+    > .cell {
+      vertical-align: top;
+      display: table-cell;
+    }
+  }
+
+  > .cell {
+    display: table-cell;
+  }
+}
